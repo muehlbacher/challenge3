@@ -85,23 +85,13 @@ for epoch in range(epochs):
     with tqdm(image_loader, unit="batch") as tepoch:
         for i, (images, ids, filename) in enumerate(tepoch):
             tepoch.set_description(f"Epoch {epoch}")
-  #  for i, (images, ids, filename) in tqdm(enumerate(image_loader)):
+
             cache = []
-        #print(f"Batch {i}:")
-        #print(f"Filename: {filename}")
-        #print(f"image ids: {ids}")
-        #print(f"batch shape: {images.shape}")
-        #load 10 images 
-        #print(i)
+
             img = images.reshape(int(batch_size/3),3,64,64)
-        #img = torch.permute(img, (0,2,3,1))
 
             targets = y_class[int(batch_size/3)*i:int(batch_size/3)*(i+1)]
             output = model(img)
-        #print(output)
-        #print(output.shape)
-        #print(targets)
-        #print(targets.shape)
 
             target_tensor = torch.LongTensor(targets)
             loss = loss_function(output, target_tensor)
@@ -112,6 +102,6 @@ for epoch in range(epochs):
             index += index 
 
             print(f"[{epoch + 1:{len(str(epochs))}d}/{epochs}] loss={loss.item():7.4f}")
-    #input_tensor, target_tensor = 
+
 
 
